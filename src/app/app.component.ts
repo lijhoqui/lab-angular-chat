@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  messages$;
+
+  constructor (private db: AngularFirestore){
+    this.messages$ = db.collection('messages').valueChanges();    
+  }
+
+  addMessage(input:HTMLInputElement){
+    const message = input.value;
+    this.db.collection('messages').add({mensaje : message, date: new Date});
+    input.value='';
+    console.log('test')
+  }
 }
