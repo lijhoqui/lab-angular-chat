@@ -4,7 +4,7 @@
     Welcome to THE CHAT!
   </h1>
 <div style="border-style: inset">
-    <div  *ngFor="let message of messages$ | async">
+    <div  *ngFor="let message of messages$ | async ">
       <p style="text-align:left">
         {{message.mensaje}}
       </p>
